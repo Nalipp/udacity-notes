@@ -159,6 +159,7 @@ main {
   background-image: url("./images/dog.jpg");
   background-size: cover;
   height: 300px;
+  order: 2;
 }
 
 .hero article {
@@ -186,6 +187,7 @@ main {
   height: 300px;
   border-bottom: 1px solid #E0E0E0;
   padding: 1em;
+  order: -1;
 }
 
 .news__title {
@@ -382,4 +384,18 @@ footer li {
 footer a {
   text-decoration: none;
   color: #333;
+}
+
+@media screen and (min-width: 700px) and (max-width: 900px) {
+  .weather {
+    /*order: 2;*/
+    width: 50%;
+  }
+  .scores {
+    /*order: 3;*/
+    width: 50%;
+  }
+  .hero {
+    width: 100%;
+  }
 }
