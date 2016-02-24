@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>HTMLcanvas</title>
+    <link rel="stylesheet" href="HTMLcanvas.css">
+  </head>
+  <body>
+    <canvas id="c" width="400" height="300"></canvas>
+
+    <script>
+      var c = document.querySelector('#c');
+      var ctx = c.getContext("2d");
+
+      ctx.strokeStyle = "#33CC33";
+
+      ctx.font = "36px impact";
+      ctx.textAlign = "center";
+      ctx.fillStyle = "white";
+      ctx.fillText("CANVAS MEMES!", c.width / 2, 40);
+
+      ctx.strokeStyle = "black";
+      ctx.lineWidth = 2.5;
+      ctx.strokeText("CANVAS MEMES!", c.width / 2, 40);
+
+
+      // var image = new Image();
+      //
+      // image.onload = function(){
+      //   console.log("Loaded image");
+      //   ctx.drawImage(image, 0, 0, c.width, c.height);
+      //   var savedImage = c.toDataURL();
+      //   window.open(savedImage);
+      // }
+
+      var c = getCanvas();
+      c.width = 960;
+      c.height = 540;
+      var ctx = c.getContext('2d');
+
+      function doIt() {
+        var imageData = ctx.getImageData(0,0, 960, 540);
+        var length = imageData.data.length / 4;
+        for (var i = 0; i < length; i++){
+            imageData.data[i * 4 + 0] = 255 - imageData.data[i * 4 + 0];   //Red
+            imageData.data[i * 4 + 1] = 255 - imageData.data[i * 4 + 1];   //Green
+            imageData.data[i * 4 + 2] = 255 - imageData.data[i * 4 + 2];   //Blue
+        }
+        // Comment this line to see original image
+        ctx.putImageData(imageData, 0, 0);
+      }
+
+      var image = new Image();
+      image.onload = function() {
+        ctx.drawImage(image, 0, 0);
+        doIt();
+      }
+      image.src = "images/hippy.jpg";
+
+    </script>
+    <script type="text/javascript" src="HTMLcanvas.js"></script>
+  </body>
+</html>
